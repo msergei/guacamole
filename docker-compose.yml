@@ -1,0 +1,19 @@
+version: '3.6'
+
+services:
+  nginx:
+    image: lsioarmhf/nginx-armhf
+    ports:
+      - 443:443
+    volumes:
+      - ./nginx:/etc/nginx
+    depends_on:
+      - guacamole
+
+  guacamole:
+    image: oznu/guacamole:armhf
+    volumes:
+      - guacamole_data:/config
+
+volumes:
+  guacamole_data:
